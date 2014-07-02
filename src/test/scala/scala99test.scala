@@ -36,19 +36,56 @@ class scala99test extends FunSuite {
     assert(flatten(List(List(1, 1), 2, List(3, List(5, 8)))) === List(1, 1, 2, 3, 5, 8))
   }
 
-  test("P07-2") {
+  test("P07 flat") {
     assert(flatten(List(1, 1, 2, 3, 5, 8)) === List(1, 1, 2, 3, 5, 8))
   }
 
-  test("P07-3") {
+  test("P07 nest right") {
     assert(flatten(List(List(1, List(1, List(2, List(3, List(5, List(8)))))))) === List(1, 1, 2, 3, 5, 8))
   }
 
-  test("P07-4") {
+  test("P07 nest left") {
     assert(flatten(List(List(List(List(List(List(1), 1), 2), 3), 5), 8)) === List(1, 1, 2, 3, 5, 8))
   }
 
-  test("P07-5") {
+  test("P07 pair") {
     assert(flatten(List(List(1, 1), List(2, 3), List(5, 8))) === List(1, 1, 2, 3, 5, 8))
   }
+
+  test("P08") {
+    assert(compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) === List('a, 'b, 'c, 'a, 'd, 'e))
+  }
+
+  test("P08 empty") {
+    assert(compress(List()) === List())
+  }
+
+  test("P08 one") {
+    assert(compress(List('a)) === List('a))
+  }
+
+  test("P08 all different") {
+    assert(compress(List('a, 'b, 'c, 'd, 'e)) === List('a, 'b, 'c, 'd, 'e))
+  }
+
+  test("P09") {
+    assert(pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) === List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
+  }
+
+  test("P09 empty") {
+    assert(pack(List()) === List(List()))
+  }
+
+  test("P09 one") {
+    assert(pack(List('a)) === List(List('a)))
+  }
+
+  test("P09 all different") {
+    assert(pack(List('a, 'b, 'c, 'd, 'e)) === List(List('a), List('b), List('c), List('d), List('e)))
+  }
+
+  test("P10") {
+    assert(encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) === List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+  }
+  
 }
