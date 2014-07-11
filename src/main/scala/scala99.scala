@@ -78,4 +78,19 @@ object scala99 {
       recursive(list.tail, (1, list.head), List())
   }
 
+  def duplicate[A](list: List[A]) = list.flatMap(x => List(x, x))
+
+  def duplicateN[A](n: Int, list: List[A]) = list.flatMap(List.fill(n)(_))
+
+  def drop[A](n: Int, list: List[A]) = list.zipWithIndex.filter(x => x._2 % 3 != 2).map(_._1)
+
+  def split[A](n: Int, list: List[A]) = (list.take(n), list.drop(n))
+
+  def slice[A](l: Int, k: Int, list: List[A]) = list.drop(l).dropRight((list.length - k) max 0)
+
+  def rotate[A](n: Int, list: List[A]) = {
+    if (n == 0) list
+    else if (n > 0) list.drop(n) ::: list.take(n)
+    else list.drop(list.length + n) ::: list.take(list.length + n)
+  }
 }
