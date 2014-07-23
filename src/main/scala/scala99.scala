@@ -1,4 +1,5 @@
 import scala.annotation.tailrec
+import scala.util.Random
 
 object scala99 {
 
@@ -93,4 +94,17 @@ object scala99 {
     else if (n > 0) list.drop(n) ::: list.take(n)
     else list.drop(list.length + n) ::: list.take(list.length + n)
   }
+
+  def removeAt[A](i: Int, list: List[A]) = (list.take(i) ::: list.drop(i + 1), list(i))
+
+  def insertAt[A](a: A, i: Int, list: List[A]) = list.take(i) ::: List(a) ::: list.drop(i)
+
+  def range(s: Int, e: Int) = List.range(s, e + 1)
+
+  def randomSelect[A](n: Int, list: List[A]) = Random.shuffle(list).take(n)
+
+  def lotto(n: Int, m: Int) = Random.shuffle(List.range(1, m)).take(n)
+
+  def randomPermute[A](list: List[A]) = randomSelect(list.length, list)
+
 }
