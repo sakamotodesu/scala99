@@ -107,4 +107,47 @@ object scala99 {
 
   def randomPermute[A](list: List[A]) = randomSelect(list.length, list)
 
+  // cheat
+  def flatMapSublists[A, B](ls: List[A])(f: (List[A]) => List[B]): List[B] =
+    ls match {
+      case Nil => Nil
+      case sublist@(_ :: tail) => f(sublist) ::: flatMapSublists(tail)(f)
+    }
+
+  def combinations[A](n: Int, ls: List[A]): List[List[A]] =
+    if (n == 0) List(Nil)
+    else flatMapSublists(ls) { sl =>
+      combinations(n - 1, sl.tail) map {
+        sl.head :: _
+      }
+    }
+
+  def gcd(a: Int, b: Int) = {
+    if (a == 0 || b == 0) {
+      0
+    }
+    def rec(m: Int, n: Int): Int = {
+      val amari = m % n
+      if (amari == 0) {
+        n
+      } else {
+        rec(n, amari)
+      }
+    }
+    if (a >= b) {
+      rec(a, b)
+    } else {
+      rec(b, a)
+    }
+  }
+
+  def gcd2(m: Int, n: Int): Int = {
+    if (n == 0) {
+      m
+    } else {
+      val amari = m % n
+      gcd2(n, amari)
+    }
+  }
+
 }

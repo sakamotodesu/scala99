@@ -1,3 +1,4 @@
+import arithmetic.S99Int._
 import org.scalatest.FunSuite
 
 import scala99._
@@ -160,4 +161,44 @@ class scala99test extends FunSuite {
     assert(ret !== List('a, 'b, 'c, 'd, 'e, 'f))
   }
 
+  test("P26") {
+    val ret = combinations(3, List('a, 'b, 'c, 'd, 'e, 'f))
+    assert(ret.length === 20)
+    assert(ret === List(List('a, 'b, 'c), List('a, 'b, 'd), List('a, 'b, 'e), List('a, 'b, 'f), List('a, 'c, 'd), List('a, 'c, 'e), List('a, 'c, 'f), List('a, 'd, 'e), List('a, 'd, 'f), List('a, 'e, 'f), List('b, 'c, 'd), List('b, 'c, 'e), List('b, 'c, 'f), List('b, 'd, 'e), List('b, 'd, 'f), List('b, 'e, 'f), List('c, 'd, 'e), List('c, 'd, 'f), List('c, 'e, 'f), List('d, 'e, 'f)))
+  }
+
+  test("P27") {
+    //    val ret = group3(List("Aldo", "Beat", "Carla", "David", "Evi", "Flip", "Gary", "Hugo", "Ida"))
+  }
+
+  test("P31") {
+    assert(7.isPrime)
+  }
+
+  test("P32") {
+    assert(gcd(1071, 1029) === 21)
+    assert(gcd2(1071, 1029) === 21)
+    assert(gcd2(1029, 1071) === 21)
+  }
+
+  test("P33") {
+    assert(35.isComprimeTo(64))
+    assert(!35.isComprimeTo(65))
+  }
+
+  test("P34") {
+    assert(10.totient == 4)
+  }
+
+  test("P35") {
+    assert(315.primeFactors === List(3, 3, 5, 7))
+  }
+
+  test("P36") {
+    assert(315.primeFactorMultiplicity === Map(3 -> 2, 5 -> 1, 7 -> 1))
+  }
+
+  test("P37") {
+    assert(10.tointImprove == 4)
+  }
 }
